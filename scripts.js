@@ -19,21 +19,6 @@ function getHumanChoice() {
     return humanChoice.toLowerCase()
 }
 
-function convertInputToNumber(inputWord) {
-    switch (inputWord) {
-        case "rock":
-            return 1;
-            break;
-        case "paper":
-            return 2;
-            break;
-        case "scissors":
-            return 3;
-            break;
-    }
-}
-
-
 function playRound(humanChoice, computerChoice) {
     let winner;
     // scenarios where the human wins
