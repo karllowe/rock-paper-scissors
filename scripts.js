@@ -21,6 +21,8 @@ function getHumanChoice() {
 
 function playRound(humanChoice, computerChoice) {
     let winner;
+    let outcomeMessage;
+
     // scenarios where the human wins
     if (humanChoice == "rock" && computerChoice == "scissors") {
         winner = "human"
@@ -41,7 +43,18 @@ function playRound(humanChoice, computerChoice) {
     else {
         winner = "draw"
     }
-    return winner + "(user: " + humanChoice + " computer: " + computerChoice + ")"
+
+    // increment scores and set the winning message
+    if (winner == "human") {
+        ++humanScore
+        outcomeMessage = "You Win! " + humanChoice + " beats " + computerChoice + "."
+    } else if (winner == "computer") {
+        ++computerScore
+        outcomeMessage = "You lose! " + humanChoice + " loses to " + computerChoice + "."
+    }
+
+    return outcomeMessage
 }
+
 
 console.log(playRound(getHumanChoice(),getComputerChoice()))
