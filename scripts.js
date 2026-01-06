@@ -126,15 +126,14 @@ let computerScore = 0;
 // button listeners
 const btns = document.querySelectorAll("button");
 const resultDiv = document.querySelector("#resultDiv");
+const scoreDiv = document.querySelector('#scoreDiv');
 
 function btnClick(e) {
     const playerSelection = e.target.id;
     const masterComputerChoice = getComputerChoice();
     let roundOutcome = playRound(playerSelection, masterComputerChoice);
-
-    //console.log(updateScore(roundOutcome,playerSelection,masterComputerChoice));
-
     resultDiv.textContent = updateScore(roundOutcome,playerSelection,masterComputerChoice);
+    scoreDiv.textContent = "Player: " + humanScore + " / Computer: " + computerScore;    
 
 };
 
