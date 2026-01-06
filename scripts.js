@@ -125,12 +125,17 @@ let computerScore = 0;
 
 // button listeners
 const btns = document.querySelectorAll("button");
+const resultDiv = document.querySelector("#resultDiv");
 
 function btnClick(e) {
     const playerSelection = e.target.id;
     const masterComputerChoice = getComputerChoice();
     let roundOutcome = playRound(playerSelection, masterComputerChoice);
-    console.log(updateScore(roundOutcome,playerSelection,masterComputerChoice))
+
+    //console.log(updateScore(roundOutcome,playerSelection,masterComputerChoice));
+
+    resultDiv.textContent = updateScore(roundOutcome,playerSelection,masterComputerChoice);
+
 };
 
 btns.forEach((button) => {
