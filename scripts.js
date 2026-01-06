@@ -122,18 +122,31 @@ function playRound(humanChoice, computerChoice) {
 
 let humanScore = 0;
 let computerScore = 0;
+let finalOutcome;
 
 // button listeners
 const btns = document.querySelectorAll("button");
 const resultDiv = document.querySelector("#resultDiv");
 const scoreDiv = document.querySelector('#scoreDiv');
+const outcomeMessage=document.querySelector('#outcomeMessage');
 
 function btnClick(e) {
     const playerSelection = e.target.id;
     const masterComputerChoice = getComputerChoice();
     let roundOutcome = playRound(playerSelection, masterComputerChoice);
     resultDiv.textContent = updateScore(roundOutcome,playerSelection,masterComputerChoice);
-    scoreDiv.textContent = "Player: " + humanScore + " / Computer: " + computerScore;    
+    scoreDiv.textContent = "Player: " + humanScore + " / Computer: " + computerScore;
+    
+    if (humanScore >=5 || computerScore >=5) {
+        if(humanScore > computerScore) {
+            finalOutcome = "You win!"
+        } else if (computerScore > humanScore) {
+            finalOutcome = "You lose!"
+        } else {
+            finalOutcome = "It's a draw!"
+        };
+        outcomeMessage.textContent = "Game over! " + finalOutcome
+    }
 
 };
 
