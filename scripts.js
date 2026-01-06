@@ -19,31 +19,31 @@ function playGame() {
     let humanScore = 0;
     let computerScore = 0;
     // declare playRound
-    function playRound(humanChoice, computerChoice) {
-        let winner;
+    // function playRound(humanChoice, computerChoice) {
+    //     let winner;
 
-        // scenarios where the human wins
-        if (humanChoice == "rock" && computerChoice == "scissors") {
-            winner = "human"
-        } else if (humanChoice == "paper" && computerChoice == "rock") {
-            winner = "human"
-        } else if (humanChoice == "scissors" && computerChoice == "paper") {
-            winner = "human"
-        } 
-        // scenarios where computer wins
-        else if (humanChoice == "rock" && computerChoice == "paper") {
-            winner = "computer"
-        } else if (humanChoice == "paper" && computerChoice == "scissors"){
-            winner = "computer"
-        } else if (humanChoice == "scissors" && computerChoice == "rock") {
-            winner = "computer"
-        }
-        // draw scenario
-        else {
-            winner = "draw"
-        }
-        return winner
-    }
+    //     // scenarios where the human wins
+    //     if (humanChoice == "rock" && computerChoice == "scissors") {
+    //         winner = "human"
+    //     } else if (humanChoice == "paper" && computerChoice == "rock") {
+    //         winner = "human"
+    //     } else if (humanChoice == "scissors" && computerChoice == "paper") {
+    //         winner = "human"
+    //     } 
+    //     // scenarios where computer wins
+    //     else if (humanChoice == "rock" && computerChoice == "paper") {
+    //         winner = "computer"
+    //     } else if (humanChoice == "paper" && computerChoice == "scissors"){
+    //         winner = "computer"
+    //     } else if (humanChoice == "scissors" && computerChoice == "rock") {
+    //         winner = "computer"
+    //     }
+    //     // draw scenario
+    //     else {
+    //         winner = "draw"
+    //     }
+    //     return winner
+    // }
     function updateScore(winner, humanChoice, computerChoice) {
         let outcomeMessage;
         if (winner == "human") {
@@ -56,7 +56,7 @@ function playGame() {
             outcomeMessage = "Draw! "
         }
         return outcomeMessage
-    }
+    };
     // keep track of score
     // repeat 5 times, and declare winner at the end
     // for (let i = 0; i < 5; i++) {
@@ -77,17 +77,63 @@ function playGame() {
     //         console.log("Game over! " + finalOutcome + "(Final score: " + humanScore + " : " + computerScore + ")")
     //     }
     // }
+
+};
+
+function updateScore(winner, humanChoice, computerChoice) {
+    let outcomeMessage;
+    if (winner == "human") {
+        ++humanScore
+        outcomeMessage = "You Win! " + humanChoice + " beats " + computerChoice
+    } else if (winner == "computer") {
+        ++computerScore
+        outcomeMessage = "You lose! " + humanChoice + " loses to " + computerChoice
+    } else {
+        outcomeMessage = "Draw! "
+    }
+    return outcomeMessage
+};
+
+function playRound(humanChoice, computerChoice) {
+    let winner;
+
+    // scenarios where the human wins
+    if (humanChoice == "rock" && computerChoice == "scissors") {
+        winner = "human"
+    } else if (humanChoice == "paper" && computerChoice == "rock") {
+        winner = "human"
+    } else if (humanChoice == "scissors" && computerChoice == "paper") {
+        winner = "human"
+    } 
+    // scenarios where computer wins
+    else if (humanChoice == "rock" && computerChoice == "paper") {
+        winner = "computer"
+    } else if (humanChoice == "paper" && computerChoice == "scissors"){
+        winner = "computer"
+    } else if (humanChoice == "scissors" && computerChoice == "rock") {
+        winner = "computer"
+    }
+    // draw scenario
+    else {
+        winner = "draw"
+    }
+    return winner
 }
-playGame();
+
+let humanScore = 0;
+let computerScore = 0;
 
 // button listeners
 const btns = document.querySelectorAll("button");
 
 function btnClick(e) {
     const playerSelection = e.target.id;
-    console.log(playerSelection);
+    const masterComputerChoice = getComputerChoice();
+    let roundOutcome = playRound(playerSelection, masterComputerChoice);
+    console.log(updateScore(roundOutcome,playerSelection,masterComputerChoice))
 };
 
 btns.forEach((button) => {
     button.addEventListener("click", btnClick)
 });
+
